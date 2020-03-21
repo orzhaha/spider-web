@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" />
     <div>
       <p>
         If Element is successfully added to this project, you'll see an
@@ -9,28 +8,44 @@
       </p>
       <el-button>el-button</el-button>
     </div>
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <br />
+    <div>
+      <codemirror v-model="code" :options="cmOptions" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { codemirror } from 'vue-codemirror'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/mode/lua/lua'
+import 'codemirror/theme/monokai.css'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    codemirror
+  },
+  data() {
+    return {
+      code: 'x=0.34',
+      cmOptions: {
+        tabSize: 4,
+        mode: 'text/x-lua',
+        theme: 'monokai',
+        lineNumbers: true,
+        line: true
+      }
+    }
   }
 }
 </script>
 
 <style>
 #app {
+  /* text style */
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
